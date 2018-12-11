@@ -23,6 +23,8 @@
         <dependency org="commons-lang"       name="commons-lang"    rev="2.2"/>
 
 	    <!--  external dependencies -->
+        <dependency org="javax.mail"     name="mail"    rev="${mail.version}"        conf='default_external->default' transitive="false" />
+
         <dependency org="org.apache.commons"     name="commons-lang3"    rev="3.0.1"        conf='default_external->default' transitive="false" />
 
         <!--  batik's maven dependencies are completely broken beyond repair -->

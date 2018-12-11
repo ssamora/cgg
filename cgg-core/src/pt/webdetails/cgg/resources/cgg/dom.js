@@ -153,6 +153,10 @@ define([
 
     function Element(_el) {
         this._el = _el;
+
+        // This is important so that elsewhere (e.g. def.mixin.copy),
+        // this object is not seen as cloneable.
+        this.constructor = Element;
     }
 
     Element.prototype = {
@@ -165,6 +169,11 @@ define([
             if(this._el) {
                 return this._el.nodeName;
             }
+        },
+
+        get id() {
+            var id = this._el.getAttribute("id");
+            return id ? String(id) : null;
         },
 
         get tagName() {
@@ -199,7 +208,9 @@ define([
             return convertedNodes;
         },
 
-        get lastChild() { return this._el.getLastChild(); },
+        get lastChild() { return createElement(this._el.getLastChild()); },
+        get firstChild() { return createElement(this._el.getFirstChild()); },
+
         get style() {
             return createStyle(this._el.getStyle());
         },
@@ -249,7 +260,7 @@ define([
         },
         removeChild: function(node) {
             this._el.removeChild(node._node || node);
-            return node.node ? node : createElement(node);
+            return node._node ? node : createElement(node);
         },
 
         insertBefore: function(newNode, refNode) {

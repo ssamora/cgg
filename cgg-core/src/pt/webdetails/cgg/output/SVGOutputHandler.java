@@ -1,5 +1,5 @@
 /*!
-* Copyright 2002 - 2013 Webdetails, a Pentaho company.  All rights reserved.
+* Copyright 2002 - 2018 Webdetails, a Pentaho company.  All rights reserved.
 * 
 * This software was developed by Webdetails and is provided under the terms
 * of the Mozilla Public License, Version 2.0, or any later version. You may not use
@@ -18,21 +18,19 @@ import java.io.OutputStream;
 
 import pt.webdetails.cgg.Chart;
 
-public class SVGOutputHandler implements OutputHandler
-{
-  private static final String MIME_SVG = "image/svg+xml";
+public class SVGOutputHandler implements OutputHandler  {
+  public static final String MIME_SVG = "image/svg+xml";
 
-  public SVGOutputHandler()
-  {
+  public SVGOutputHandler() {
+
   }
 
-  public void render(final OutputStream out, final Chart chart) throws IOException
-  {
-    chart.renderAsSVG(out);
+  public void render(final OutputStream out, final Chart chart) throws IOException {
+    chart.renderAsSVG( out );
   }
 
-  public String getMimeType()
-  {
+  public String getMimeType() {
+
     return MIME_SVG;
   }
 }
